@@ -1,0 +1,33 @@
+{
+  "owner": "vshkuratov4",
+  "repo": "vshkuratov4.github.io",
+  "domains": [
+    { "code": "COMP", "name": "Computer Science", "accent": "#6fae8f", "courses": [] },
+    { "code": "SOEN", "name": "Software Engineering", "accent": "#cf9066", "courses": [] },
+    { "code": "COEN", "name": "Computer Engineering", "accent": "#6d9fae", "courses": [] },
+    {
+      "code": "ELEC", "name": "Electrical Engineering", "accent": "#d9a441",
+      "courses": [
+        {
+          "code": "ELEC 275",
+          "name": "Principles of Electrical Engineering",
+          "notes": [
+            {
+              "title": "Week 1 — Circuit Concepts",
+              "file": "ELEC275_Week01_Circuit_Concepts.pdf",
+              "description": "92 slides: theory, shortcuts, exam traps, 17 worked examples and 8 practice problems with full solutions. Charge, current, voltage, power, KCL, KVL, Ohm's law, dividers, equivalent resistance, Wheatstone bridge, dependent sources.",
+              "date": "2026-09-18"
+            }
+          ]
+        }
+      ]
+    },
+    { "code": "MECH", "name": "Mechanical Engineering", "accent": "#c2734e", "courses": [] },
+    { "code": "INDU", "name": "Industrial Engineering", "accent": "#a3a86b", "courses": [] },
+    { "code": "AERO", "name": "Aerospace Engineering", "accent": "#85aec2", "courses": [] },
+    { "code": "CIVI", "name": "Civil Engineering", "accent": "#a99877", "courses": [] },
+    { "code": "BLDG", "name": "Building Engineering", "accent": "#d0b18a", "courses": [] },
+    { "code": "ENGR", "name": "General Engineering", "accent": "#9aa3ab", "courses": [] },
+    { "code": "ENCS", "name": "Engineering & CS Core", "accent": "#b5b0a6", "courses": [] }
+  ]
+}

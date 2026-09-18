@@ -12,6 +12,8 @@ common exam traps, worked examples, and practice problems with full solutions.
 | ELEC 275, Principles of Electrical Engineering | Week 1: Circuit Concepts |
 
 More courses (SOEN, COMP, ENGR) will be added over time.
+See [ADDING_NOTES.md](ADDING_NOTES.md) for how notes are added; all content
+is driven by [data/courses.json](data/courses.json).
 
 ## How each deck is built
 

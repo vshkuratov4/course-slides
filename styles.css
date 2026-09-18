@@ -1,0 +1,264 @@
+/* Study slides — bubble field. Warm ink, editorial serif, mono codes. */
+
+:root{
+  --ink:#131210;
+  --ink-2:#1b1916;
+  --bone:#e9e4da;
+  --bone-soft:rgba(233,228,218,.82);
+  --mut:#8f897d;
+  --line:rgba(233,228,218,.16);
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --soft:cubic-bezier(.22,1,.36,1);
+  --spring:cubic-bezier(.32,1.3,.35,1);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;overflow:hidden;
+  color:var(--bone);font-family:var(--serif);font-size:17px;line-height:1.5;
+  background:radial-gradient(120% 90% at 50% -10%, #1d1a16 0%, var(--ink) 62%);
+}
+a{color:var(--bone)}
+:focus-visible{outline:2px solid var(--bone);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
+
+/* ---------- masthead / footer ---------- */
+.mast{position:fixed;top:0;left:0;padding:34px 38px;z-index:5;pointer-events:none}
+.mast h1{margin:0;font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:560;letter-spacing:.01em}
+.mast .tag{margin:6px 0 0;color:var(--mut);font-size:.98rem;font-style:italic;max-width:30ch}
+.back{
+  pointer-events:auto;margin-top:18px;display:inline-block;
+  font-family:var(--mono);font-size:.85rem;color:var(--mut);
+  border-bottom:1px solid transparent;transition:color .3s,border-color .3s;
+}
+.back:hover{color:var(--bone);border-color:var(--bone)}
+.back[hidden]{display:none}
+
+.hint{
+  position:fixed;right:38px;bottom:64px;z-index:5;margin:0;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);opacity:.8;transition:opacity .6s;pointer-events:none;
+}
+.hint.off{opacity:0}
+
+.foot{
+  position:fixed;left:38px;bottom:24px;right:38px;z-index:5;
+  font-family:var(--mono);font-size:.75rem;color:var(--mut);
+}
+.foot a{color:var(--mut);text-decoration:none;border-bottom:1px solid rgba(143,137,125,.4);transition:color .3s,border-color .3s}
+.foot a:hover{color:var(--bone);border-color:var(--bone)}
+.foot .dot{margin:0 8px;opacity:.5}
+.foot .fine{display:block;margin-top:5px;opacity:.6;max-width:64ch}
+
+/* ---------- bubble field ---------- */
+#field{position:fixed;inset:0;z-index:1}
+
+.bubble{
+  position:absolute;left:var(--x);top:var(--y);
+  width:clamp(88px, calc(var(--s) * 15vmin), 178px);aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  transition:transform .8s var(--soft), opacity .6s, filter .6s;
+  z-index:2;border-radius:50%;
+  -webkit-tap-highlight-color:transparent;
+}
+.drift{display:block;width:100%;height:100%;will-change:transform}
+.drift.settle{transition:transform .9s var(--soft)}
+
+.shell{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;height:100%;border-radius:50%;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(120% 120% at 31% 24%, rgba(255,255,255,.09), rgba(255,255,255,0) 46%),
+    radial-gradient(95% 95% at 74% 82%, var(--acc-glow), rgba(0,0,0,0) 60%);
+  box-shadow:
+    inset 0 0 26px rgba(255,255,255,.045),
+    inset -10px -14px 34px rgba(0,0,0,.30);
+  transition:border-color .5s, box-shadow .5s;
+}
+/* thin refraction crescent */
+.shell::before{
+  content:"";position:absolute;inset:5.5%;border-radius:50%;
+  border:1px solid transparent;
+  border-top-color:rgba(255,255,255,.18);
+  border-left-color:rgba(255,255,255,.05);
+  transform:rotate(-18deg);
+}
+.bubble:hover .shell{border-color:rgba(233,228,218,.34)}
+
+.bubble .code{
+  position:relative;z-index:2;
+  font-family:var(--mono);font-weight:500;letter-spacing:.06em;
+  font-size:clamp(.86rem, calc(var(--s) * 1.25vmin + .35rem), 1.2rem);
+}
+.bubble .sub{
+  position:relative;z-index:2;margin-top:2px;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--mut);
+}
+.bubble .dname,.bubble .dcount{display:none}
+
+.bubble.soon{opacity:.55}
+.bubble.soon:hover{opacity:.8}
+
+/* sunk: everything that is not the chosen bubble */
+.bubble.sunk{
+  opacity:.16;filter:blur(2.5px);
+  transform:translate(-50%,-38%) scale(.55);
+  pointer-events:none;
+}
+.bubble.soon.sunk{opacity:.09}
+
+/* focused: glides to center via inline transform, content re-set in em of --k */
+.bubble.focus{z-index:6;cursor:default}
+.bubble.focus .shell{border-color:rgba(233,228,218,.30)}
+.bubble.focus .code{font-size:calc(1.9rem / var(--k,1));letter-spacing:.08em}
+.bubble.focus .sub{display:none}
+.bubble.focus .dname{
+  display:block;position:relative;z-index:2;margin-top:calc(6px / var(--k,1));
+  font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bone-soft);
+  font-size:calc(1.02rem / var(--k,1));
+}
+.bubble.focus .dcount{
+  display:block;position:relative;z-index:2;margin-top:calc(4px / var(--k,1));
+  font-family:var(--mono);font-size:calc(.72rem / var(--k,1));letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mut);
+}
+
+/* ---------- course (child) bubbles ---------- */
+.kid{
+  position:absolute;width:118px;aspect-ratio:1;z-index:7;
+  transform:translate(-50%,-50%) scale(.12);opacity:0;
+  transition:transform .85s var(--spring), opacity .45s;
+  border-radius:50%;
+  -webkit-tap-highlight-color:transparent;
+}
+.kid.in{opacity:1}
+.kid.merge{opacity:0 !important}
+.kshell{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  width:100%;height:100%;border-radius:50%;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(120% 120% at 30% 25%, rgba(255,255,255,.10), rgba(255,255,255,0) 45%),
+    radial-gradient(95% 95% at 72% 80%, var(--acc-glow), rgba(0,0,0,0) 60%);
+  box-shadow:inset 0 0 18px rgba(255,255,255,.05), inset -6px -10px 22px rgba(0,0,0,.3);
+  transition:border-color .4s;
+  animation:bob 5.5s ease-in-out infinite alternate;
+}
+.kid:hover .kshell,.kid.active .kshell{border-color:var(--acc)}
+@keyframes bob{from{transform:translateY(-3px)}to{transform:translateY(3px)}}
+.kid .kcode{font-family:var(--mono);font-weight:500;font-size:.95rem;letter-spacing:.05em}
+.kid .kmeta{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;color:var(--mut)}
+
+.fieldnote{
+  position:absolute;z-index:6;transform:translate(-50%,0);text-align:center;
+  font-family:var(--mono);font-size:.8rem;color:var(--mut);
+  opacity:0;transition:opacity .6s .5s;
+}
+.fieldnote.in{opacity:1}
+.fieldnote a{color:var(--bone-soft)}
+
+/* ---------- signature line-art icons ---------- */
+.icon{position:absolute;inset:13%;z-index:1;opacity:0;transition:opacity .6s;pointer-events:none}
+.icon :is(path,circle,rect,line){
+  fill:none;stroke:var(--bone-soft);stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;
+}
+.icon .ac{stroke:var(--acc)}
+.bubble:hover .icon,.bubble:focus-visible .icon{opacity:.3}
+.bubble.focus .icon{opacity:.42}
+.bubble:hover .icon :is(path,circle,rect,line),
+.bubble.focus .icon :is(path,circle,rect,line){
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:sketch 1.3s var(--soft) forwards;
+  animation-delay:calc(var(--d,0) * .22s);
+}
+@keyframes sketch{to{stroke-dashoffset:0}}
+
+/* per-domain motion once open */
+.i-mech g{transform-box:fill-box;transform-origin:center}
+.focus .i-mech .gA{animation:spin 8s linear infinite}
+.focus .i-mech .gB{animation:spinR 5.2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinR{to{transform:rotate(-360deg)}}
+.focus .i-elec .ac{animation:sketch 1.1s var(--soft) forwards, current 1.9s linear 1.3s infinite}
+.focus .i-coen .tr{animation:sketch 1.1s var(--soft) forwards, current 2.1s linear 1.4s infinite}
+.focus .i-aero .fl{animation:sketch 1.2s var(--soft) forwards, current 2s linear 1.5s infinite}
+@keyframes current{
+  from{stroke-dasharray:.12 .12;stroke-dashoffset:0}
+  to{stroke-dasharray:.12 .12;stroke-dashoffset:-.96}
+}
+.i-indu .p{transform-box:fill-box}
+.focus .i-indu .p{animation:convey 2.6s ease-in-out infinite alternate}
+.focus .i-indu .p2{animation-delay:.3s}
+.focus .i-indu .p3{animation-delay:.6s}
+@keyframes convey{to{transform:translateX(13px)}}
+.focus .i-soen .nd{animation:sketch .6s var(--soft) forwards, pulse 1.8s ease-in-out 1.4s infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ---------- reading panel ---------- */
+#veil{position:fixed;inset:0;z-index:8;background:rgba(10,9,8,.45);opacity:0;transition:opacity .4s}
+#veil.show{opacity:1}
+#panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:9;
+  width:min(480px,100vw);overflow-y:auto;
+  background:var(--ink-2);border-left:1px solid var(--line);
+  transform:translateX(103%);transition:transform .5s var(--soft);
+  padding:34px 34px 44px;
+}
+#panel.show{transform:translateX(0)}
+.pclose{
+  position:absolute;top:20px;right:22px;
+  font-family:var(--mono);font-size:.85rem;color:var(--mut);
+  transition:color .3s;
+}
+.pclose:hover{color:var(--bone)}
+.pkicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc,#d9a441);margin:0 0 6px}
+.ptitle{font-family:var(--serif);font-weight:560;font-size:1.65rem;line-height:1.2;margin:0 0 4px}
+.psub{font-style:italic;color:var(--mut);margin:0 0 26px;font-size:.95rem}
+
+.note{border-top:1px solid var(--line);padding:22px 0}
+.note:last-child{border-bottom:1px solid var(--line)}
+.note .prev{
+  display:block;width:100%;border:1px solid var(--line);margin:0 0 14px;
+  aspect-ratio:16/9;object-fit:cover;background:var(--ink);
+}
+.note h3{font-family:var(--serif);font-weight:560;font-size:1.18rem;margin:0 0 6px}
+.note .desc{color:var(--bone-soft);font-size:.92rem;margin:0 0 10px}
+.note .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--mut);margin:0 0 14px}
+.note .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.nbtn{
+  display:inline-block;text-decoration:none;
+  font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;
+  padding:8px 16px;border:1px solid var(--line);border-radius:99px;
+  transition:border-color .3s, background .3s, color .3s, transform .2s var(--soft);
+}
+.nbtn:hover{transform:translateY(-1px)}
+.nbtn.main{border-color:var(--acc);color:var(--ink);background:var(--acc)}
+.nbtn.main:hover{filter:brightness(1.08)}
+.nbtn.ghost:hover{border-color:var(--bone);color:var(--bone)}
+.nrep{font-family:var(--mono);font-size:.74rem;color:var(--mut);text-decoration:none;border-bottom:1px solid rgba(143,137,125,.4)}
+.nrep:hover{color:var(--bone);border-color:var(--bone)}
+
+/* ---------- small screens ---------- */
+@media (max-width:700px){
+  .mast{padding:22px 22px}
+  .foot{left:22px;right:22px;bottom:16px}
+  .foot .fine{display:none}
+  .hint{right:22px;bottom:56px}
+  #panel{padding:26px 22px 40px}
+  .kid{width:96px}
+}
+
+/* applied for the first paint so deep links don't animate */
+.noanim *{transition-duration:0s !important;animation-duration:0s !important}
+
+/* ---------- reduced motion: fade, don't fly ---------- */
+@media (prefers-reduced-motion:reduce){
+  .bubble,.kid,#panel,#veil,.drift{transition:opacity .3s !important}
+  .kshell,.icon *,.i-mech g{animation:none !important}
+  .icon{opacity:.35}
+  .bubble.focus .icon{opacity:.45}
+}
