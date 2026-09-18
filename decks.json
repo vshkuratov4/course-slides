@@ -1,0 +1,18 @@
+{
+  "owner": "vshkuratov4",
+  "repo": "vshkuratov4.github.io",
+  "decks": [
+    {
+      "course": "ELEC 275",
+      "courseName": "Principles of Electrical Engineering",
+      "week": 1,
+      "title": "Circuit Concepts",
+      "topics": ["charge", "current", "voltage", "power", "passive sign convention", "KCL", "KVL", "Ohm's law", "series", "parallel", "voltage divider", "current divider", "equivalent resistance", "Wheatstone bridge", "dependent sources"],
+      "slides": 92,
+      "examples": 17,
+      "practice": 8,
+      "file": "ELEC275_Week01_Circuit_Concepts.pdf",
+      "added": "2026-09-18"
+    }
+  ]
+}
