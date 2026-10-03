@@ -27,7 +27,7 @@
   async function loadCounts(){
     try {
       const cached = JSON.parse(sessionStorage.getItem('relCounts.v1') || 'null');
-      if (cached && Date.now() - cached.t < 15*60*1000) { COUNTS = cached.m; return; }
+      if (cached && Date.now() - cached.t < 3*60*1000) { COUNTS = cached.m; return; }
     } catch(e){}
     try {
       const r = await fetch(`https://api.github.com/repos/${DATA.owner}/${DATA.repo}/releases?per_page=100`);
