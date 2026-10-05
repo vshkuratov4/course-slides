@@ -13,7 +13,7 @@
 Free, in-depth study slides for engineering courses: theory explained step by step,
 shortcuts, common exam traps, worked examples, and practice problems with full solutions.
 
-**Website:** https://vshkuratov4.github.io
+**Website:** https://vshkuratov4.github.io/course-slides/
 
 ## Courses
 
