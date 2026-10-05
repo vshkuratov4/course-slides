@@ -17,7 +17,9 @@ shortcuts, common exam traps, worked examples, and practice problems with full s
 
 ## Courses
 
-### ELEC 275: Principles of Electrical Engineering
+### ELEC 273 / ELEC 275: Principles of Electrical Engineering
+
+ELEC 273 and ELEC 275 are the same class under different names depending on your program, so they cover the same material, so both course bubbles on the site share the same decks.
 
 | Deck | Topics |
 |---|---|
