@@ -26,6 +26,96 @@
       "accent": "#d9a441",
       "courses": [
         {
+          "code": "ELEC 273",
+          "name": "Principles of Electrical Engineering",
+          "notes": [
+            {
+              "title": "Week 1 — Circuit Concepts",
+              "file": "ELEC275_Week01_Circuit_Concepts.pdf",
+              "description": "108 slides with step-by-step solutions. Charge, current, voltage, power and the sign convention, KCL, KVL, Ohm's law, dividers, equivalent resistance (with every exam trap), Wheatstone bridge, dependent sources.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 2 — Nodal and Mesh Analysis",
+              "file": "ELEC275_Week02_Nodal_Mesh_Analysis.pdf",
+              "description": "74 slides with step-by-step solutions. Node voltage and mesh current methods, matrices by inspection, supernodes, supermeshes, dependent sources, and how to pick the faster method.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 3 — Thévenin, Norton and Maximum Power",
+              "file": "ELEC275_Week03_Thevenin_Norton_Max_Power.pdf",
+              "description": "68 slides with step-by-step solutions. Superposition, source transformations, Thévenin and Norton equivalents, the test-source method, maximum power transfer, load lines and meter loading.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 4 — Capacitors, Inductors and Transients",
+              "file": "ELEC275_Week04_Capacitors_Inductors_Transients.pdf",
+              "description": "73 slides with step-by-step solutions. C and L laws and energy, DC steady state, first-order RC/RL transients, second-order RLC (over, critical, underdamped), overshoot and settling.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 5 — Sinusoidal Sources",
+              "file": "ELEC275_Week05_Sinusoidal_Sources.pdf",
+              "description": "57 slides with step-by-step solutions. Sinusoids, phase, lead and lag, average and RMS values (derived), complex numbers and why they represent sinusoids.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 6 — Phasors and AC Circuit Analysis",
+              "file": "ELEC275_Week06_Phasors_AC_Analysis.pdf",
+              "description": "60 slides with step-by-step solutions. Phasors, impedance and admittance, phasor diagrams, AC dividers, AC nodal and mesh, AC Thévenin, sources at different frequencies.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 7 — AC Power and Power Factor",
+              "file": "ELEC275_Week07_AC_Power.pdf",
+              "description": "62 slides with step-by-step solutions. Instantaneous, average, reactive and complex power, the power triangle, power factor correction, AC maximum power (fully derived).",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 8 — Transformers and Impedance Matching",
+              "file": "ELEC275_Week08_Transformers.pdf",
+              "description": "51 slides with step-by-step solutions. Ideal transformer, turns ratio, dot convention, reflected impedance, impedance matching for maximum power, real transformers and efficiency.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 9 — Three-Phase Power",
+              "file": "ELEC275_Week09_Three_Phase_Power.pdf",
+              "description": "57 slides with step-by-step solutions. Balanced Y and delta, line vs phase quantities, the per-phase method, three-phase power and correction, residential wiring, power distribution.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 10 — Magnetic Circuits and Materials",
+              "file": "ELEC275_Week10_Magnetic_Circuits.pdf",
+              "description": "58 slides with step-by-step solutions. Ampère and Faraday, reluctance and air gaps, inductance, mutual inductance, B–H curves, boundary conditions, magnetic energy.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 11 — Electromechanical Energy Conversion",
+              "file": "ELEC275_Week11_Energy_Conversion.pdf",
+              "description": "52 slides with step-by-step solutions. Force on a current, motional EMF, the linear machine as motor and generator, torque on a coil, magnetic pull, efficiency.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Week 12 — Electric Machines",
+              "file": "ELEC275_Week12_Electric_Machines.pdf",
+              "description": "54 slides with step-by-step solutions. DC motors and generators (shunt, series, separately excited), synchronous machines, induction motors and slip, power flow and regulation.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Final Review — Every Trap and Mixed Exam Practice",
+              "file": "ELEC275_Final_Review.pdf",
+              "description": "45 slides with step-by-step solutions. A trap sheet for every week, which method to use when, everything to memorize, and 12 mixed exam-style problems with full solutions.",
+              "date": "2026-10-03"
+            },
+            {
+              "title": "Bonus — Operational Amplifiers",
+              "file": "ELEC275_Bonus_Op_Amps.pdf",
+              "description": "36 slides with step-by-step solutions. Ideal op-amp rules (and why they hold), inverting, non-inverting, buffer, summing, difference, integrator, differentiator, active filter.",
+              "date": "2026-10-03"
+            }
+          ]
+        },
+        {
           "code": "ELEC 275",
           "name": "Principles of Electrical Engineering",
           "notes": [
