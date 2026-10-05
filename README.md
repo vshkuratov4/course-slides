@@ -1,6 +1,14 @@
 # Study slides by Vladislav Shkuratov
 
-[![Downloads](https://img.shields.io/github/downloads/vshkuratov4/vshkuratov4.github.io/total?label=downloads&color=8a1f2b)](https://github.com/vshkuratov4/vshkuratov4.github.io/releases)
+<div align="center">
+
+## 📥 Total downloads
+
+<a href="https://github.com/vshkuratov4/vshkuratov4.github.io/releases">
+  <img src="https://img.shields.io/github/downloads/vshkuratov4/vshkuratov4.github.io/total?style=for-the-badge&label=DOWNLOADS&color=8a1f2b&labelColor=1d232b" height="60" alt="Total downloads">
+</a>
+
+</div>
 
 Free, in-depth study slides for engineering courses: theory explained step by step,
 shortcuts, common exam traps, worked examples, and practice problems with full solutions.
