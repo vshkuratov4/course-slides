@@ -4,8 +4,8 @@
 
 ## 📥 Total downloads
 
-<a href="https://github.com/vshkuratov4/vshkuratov4.github.io/releases">
-  <img src="https://img.shields.io/github/downloads/vshkuratov4/vshkuratov4.github.io/total?style=for-the-badge&label=DOWNLOADS&color=8a1f2b&labelColor=1d232b" height="60" alt="Total downloads">
+<a href="https://github.com/vshkuratov4/course-slides/releases">
+  <img src="https://img.shields.io/github/downloads/vshkuratov4/course-slides/total?style=for-the-badge&label=DOWNLOADS&cacheSeconds=120&color=8a1f2b&labelColor=1d232b" height="60" alt="Total downloads">
 </a>
 
 </div>
@@ -49,7 +49,7 @@ Every numerical answer is checked with an independent circuit solver.
 ## Download
 
 Download any deck from the website, or get them all from
-[Releases](https://github.com/vshkuratov4/vshkuratov4.github.io/releases).
+[Releases](https://github.com/vshkuratov4/course-slides/releases).
 
 ## Using these slides
 
@@ -58,7 +58,7 @@ don't sell them. See [LICENSE](LICENSE) (CC BY-NC 4.0).
 
 ## Found a mistake?
 
-Open an issue: https://github.com/vshkuratov4/vshkuratov4.github.io/issues
+Open an issue: https://github.com/vshkuratov4/course-slides/issues
 
 ## For maintainers
 
